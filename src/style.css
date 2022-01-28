@@ -1,0 +1,91 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 auto;
+  background-color: #000;
+}
+
+.container {
+  background-color: #fff;
+  padding: 15px 25px;
+  border-radius: 6px;
+}
+
+.add-tasks {
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-app {
+  text-align: center;
+  padding: 7px;
+}
+
+.add-tasks input {
+  border: 2px solid #000;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 320px;
+}
+
+.add-tasks button {
+  border: 0;
+  border: 2px solid #000;
+  background-color: #000;
+  color: #fff;
+  border-radius: 5px;
+  padding: 5px 13px;
+  cursor: pointer;
+  transition: 0.2s all ease;
+}
+
+.add-tasks button:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+.tasks {
+  width: 400px;
+  padding-top: 15px;
+}
+
+.tasks .tasks-list {
+  list-style: none;
+}
+
+.tasks .tasks-list .task {
+  width: 100%;
+  border-bottom: 2px solid #000;
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.tasks .tasks-list .task button {
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.tasks .tasks-list .task button i {
+  font-size: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: red;
+  font-weight: 900;
+}
