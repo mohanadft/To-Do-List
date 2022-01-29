@@ -23,7 +23,7 @@ function App() {
         });
       });
     },
-    [nOfTasks]
+    [state]
   );
 
   function deleteTask(event) {
@@ -104,7 +104,6 @@ function App() {
                   <button
                     className="edit-content"
                     onClick={(event) => {
-                      localStorage.setItem("tasks", JSON.stringify(tasks));
                       setTasks((prevTasks) => {
                         return prevTasks.map((e) => {
                           return e.name === prevState
