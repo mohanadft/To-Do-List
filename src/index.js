@@ -73,18 +73,20 @@ function App() {
         <button
           className="add-btn"
           onClick={(event) => {
-            setNOfTasks((prev) => prev + 1);
+            if (event.target.parentElement.children[0].value) {
+              setNOfTasks((prev) => prev + 1);
 
-            setTasks((prev) => {
-              return [
-                ...prev,
-                {
-                  id: nOfTasks,
-                  name: event.target.parentElement.children[0].value,
-                },
-              ];
-            });
-            setState("");
+              setTasks((prev) => {
+                return [
+                  ...prev,
+                  {
+                    id: nOfTasks,
+                    name: event.target.parentElement.children[0].value,
+                  },
+                ];
+              });
+              setState("");
+            }
           }}
         >
           Add
@@ -102,6 +104,7 @@ function App() {
                   <button
                     className="edit-content"
                     onClick={(event) => {
+                      localStorage.setItem("tasks", JSON.stringify(tasks));
                       setTasks((prevTasks) => {
                         return prevTasks.map((e) => {
                           return e.name === prevState
@@ -109,7 +112,7 @@ function App() {
                             : e;
                         });
                       });
-                      console.log(prevState);
+
                       event.target.parentElement.querySelector(
                         ".task-name"
                       ).textContent = state;
