@@ -30,16 +30,11 @@ function App() {
     localStorage.setItem("tasks", JSON.stringify(tasks));
   });
 
-  function deleteTask(event) {
-    const clickedItemContent =
-      event.target.parentElement.parentElement.parentElement.querySelector(
-        ".task-name"
-      ).textContent;
-
+  function deleteTask(name) {
     setNOfTasks((prev) => prev - 1);
 
     setTasks((prevTasks) => {
-      return prevTasks.filter((e) => e.name !== clickedItemContent);
+      return prevTasks.filter((e) => e.name !== name);
     });
 
     localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -62,6 +57,18 @@ function App() {
     event.target.parentElement.parentElement.parentElement.querySelector(
       ".edit-content"
     ).style.display = "block";
+  }
+
+  function editContent(event, name) {
+    setTasks((prevTasks) => {
+      return prevTasks.map((e) => {
+        return e.name === prevState ? { ...e, name: state } : e;
+      });
+    });
+
+    name = state;
+    event.target.style.display = "none";
+    setState("");
   }
 
   return (
@@ -109,21 +116,7 @@ function App() {
                   </div>
                   <button
                     className="edit-content"
-                    onClick={(event) => {
-                      setTasks((prevTasks) => {
-                        return prevTasks.map((e) => {
-                          return e.name === prevState
-                            ? { ...e, name: state }
-                            : e;
-                        });
-                      });
-
-                      event.target.parentElement.querySelector(
-                        ".task-name"
-                      ).textContent = state;
-                      event.target.style.display = "none";
-                      setState("");
-                    }}
+                    onClick={(event) => editContent(event, task.name)}
                   >
                     Edit
                   </button>
@@ -131,7 +124,10 @@ function App() {
                     <button className="edit" onClick={edit}>
                       <i className="bx bxs-edit"></i>
                     </button>
-                    <button onClick={deleteTask} className="delete">
+                    <button
+                      onClick={() => deleteTask(task.name)}
+                      className="delete"
+                    >
                       <i className="bx bx-x-circle"></i>
                     </button>
                   </div>
