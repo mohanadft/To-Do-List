@@ -14,7 +14,6 @@ function App() {
 
   React.useEffect(
     function () {
-      localStorage.setItem("tasks", JSON.stringify(tasks));
       localStorage.setItem("Number of Tasks", nOfTasks);
 
       setTasks((prevTasks) => {
@@ -22,9 +21,14 @@ function App() {
           return { ...e, id: index + 1 };
         });
       });
+      localStorage.setItem("tasks", JSON.stringify(tasks));
     },
-    [state]
+    [nOfTasks]
   );
+
+  React.useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+  });
 
   function deleteTask(event) {
     const clickedItemContent =
@@ -37,6 +41,8 @@ function App() {
     setTasks((prevTasks) => {
       return prevTasks.filter((e) => e.name !== clickedItemContent);
     });
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
   }
 
   const [prevState, setPrevState] = React.useState("");
